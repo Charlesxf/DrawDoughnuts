@@ -31,7 +31,6 @@ int iDepth = 0;
 void RenderScene()
 {
     //1.清除窗口和深度缓冲区
-    //可以给学员演示一下不清空颜色/深度缓冲区时.渲染会造成什么问题. 残留数据
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     //开启/关闭正背面剔除功能
@@ -42,6 +41,12 @@ void RenderScene()
     }else
     {
         glDisable(GL_CULL_FACE);
+    }
+    
+    if (iDepth) {
+        glEnable(GL_DEPTH_TEST);
+    }else{
+        glDisable(GL_DEPTH_TEST);
     }
     
     //2.把摄像机矩阵压入模型矩阵中
